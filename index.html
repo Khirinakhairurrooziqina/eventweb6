@@ -291,39 +291,67 @@
       <!-- Link Font Awesome untuk ikon -->
       <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-    <!-- Order Ticket Section -->
-    <section id="order" class="p-5 bg-light" style="background: linear-gradient(to right, #252729, #5c6061); position: relative; overflow: hidden;" >
-        <div class="container">
-            <h2 class="text-center" style="color: white;">Order Your Tickets</h2>
-            <form id="orderForm" action="submit.html" method="post" class="mt-4">
-                <div class="mb-3">
-                    <label for="event" class="form-label">Pilih Tiket</label>
-                    <select id="event" name="event" class="form-control">
-                        <option value="" disabled selected>Silahkan memilih tiket yang anda ingin pesan</option>
-                        <option value="CHARACHELLA">CHARACHELLA</option>
-                        <option value="CAN MACHINES FALL IN LOVE">CAN MACHINES FALL IN LOVE</option>
-                        <option value="FESTIVAL TEATER MAHASISWA INDONESIA">FESTIVAL TEATER MAHASISWA INDONESIA</option>
-                        <option value="LIVE INDIE MUSIC EVENT">LIVE INDIE MUSIC EVENT</option>
-                        <option value="mahalini">mahalini</option>
-                        <option value="SULSEL HALF MARATHON">SULSEL HALF MARATHON</option>
-                    </select>
-                </div>                
-                <div class="mb-3">
-                    <label for="quantity" class="form-label" style="color: white;">Number of Tickets:</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity">
-                </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label" style="color: white;">Full Name:</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label" style="color: white;">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+<!-- Order Ticket Section -->
+<section id="order" class="p-5 bg-light" style="background: linear-gradient(to right, #252729, #5c6061); position: relative; overflow: hidden;">
+    <div class="container">
+        <h2 class="text-center" style="color: white;">Order Your Tickets</h2>
+        <form id="orderForm" class="mt-4">
+            <div class="mb-3">
+                <label for="event" class="form-label">Pilih Tiket</label>
+                <select id="event" name="event" class="form-control">
+                    <option value="" disabled selected>Silahkan memilih tiket yang anda ingin pesan</option>
+                    <option value="CHARACHELLA">CHARACHELLA</option>
+                    <option value="CAN MACHINES FALL IN LOVE">CAN MACHINES FALL IN LOVE</option>
+                    <option value="FESTIVAL TEATER MAHASISWA INDONESIA">FESTIVAL TEATER MAHASISWA INDONESIA</option>
+                    <option value="LIVE INDIE MUSIC EVENT">LIVE INDIE MUSIC EVENT</option>
+                    <option value="mahalini">mahalini</option>
+                    <option value="SULSEL HALF MARATHON">SULSEL HALF MARATHON</option>
+                </select>
+            </div>                
+            <div class="mb-3">
+                <label for="quantity" class="form-label" style="color: white;">Number of Tickets:</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label" style="color: white;">Full Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label" style="color: white;">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div id="confirmationMessage" style="display:none; color: white; margin-top: 20px;">
+            <h3>Order Confirmed!</h3>
+            <p>Thank you, <span id="confirmName"></span>. Your order for <span id="confirmQuantity"></span> ticket(s) to the event "<span id="confirmEvent"></span>" has been confirmed!</p>
         </div>
-    </section>
+
+    </div>
+</section>
+
+<script>
+// JavaScript to handle form submission
+document.getElementById('orderForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get form values
+    const eventName = document.getElementById('event').value;
+    const quantity = document.getElementById('quantity').value;
+    const name = document.getElementById('name').value;
+
+    // Display confirmation message
+    document.getElementById('confirmName').textContent = name;
+    document.getElementById('confirmQuantity').textContent = quantity;
+    document.getElementById('confirmEvent').textContent = eventName;
+
+    // Show confirmation message and hide the form
+    document.getElementById('confirmationMessage').style.display = 'block';
+    document.getElementById('orderForm').style.display = 'none';
+});
+</script>
 
 <!-- Bagian Tentang Kami -->
 <section id="about" class="py-5" style="background: linear-gradient(to right, #252729, #5c6061); position: relative;">
